@@ -3,7 +3,7 @@ import { FavoritePokemon } from '../pages';
 
 describe('Testa o componente <FavoritePokemon />', () => {
   it('', () => {
-    render(FavoritePokemon);
+    render(<FavoritePokemon />);
     const notFoundTxt = screen.getByText('No favorite Pokémon found');
     const heading = screen.getByRole('heading', {
       name: /favorite pokémon/i,
