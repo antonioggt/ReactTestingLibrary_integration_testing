@@ -18,10 +18,14 @@ describe('Testa o componente <About />', () => {
       name: 'About Pokédex',
       level: 2,
     });
+    const img = screen.getByRole('img', {
+      name: /pokédex/i,
+    });
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
     expect(text2).toBeInTheDocument();
     expect(text1).toBeInTheDocument();
     expect(heading).toBeInTheDocument();
+    expect(img).toBeInTheDocument();
   });
 });
