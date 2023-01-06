@@ -1,15 +1,10 @@
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import App from '../App';
+import { About } from '../pages';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Testa o componente <About />', () => {
   it('Teste se a página contém as informações sobre a Pokédex', () => {
-    const { history } = renderWithRouter(<App />);
-    const aboutLink = screen.getByRole('link', {
-      name: /about/i,
-    });
-    userEvent.click(aboutLink);
+    renderWithRouter(<About />);
     const text1Content = 'One can filter Pokémon by type, and see more details for each one of them';
     const text2Content = 'This application simulates a Pokédex, a digital encyclopedia containing all Pokémon';
     const text2 = screen.getByText(text2Content);
@@ -21,11 +16,11 @@ describe('Testa o componente <About />', () => {
     const img = screen.getByRole('img', {
       name: /pokédex/i,
     });
-    const { pathname } = history.location;
-    expect(pathname).toBe('/about');
+    const imgSrc = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     expect(text2).toBeInTheDocument();
     expect(text1).toBeInTheDocument();
     expect(heading).toBeInTheDocument();
     expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute('src', imgSrc);
   });
 });
